@@ -1,6 +1,6 @@
 package com.example.calculator.controller;
 
-import com.example.calculator.service.CalculatorService;
+import com.example.calculator.service.impl.CalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +25,7 @@ public class CalculatorController {
                             @RequestParam("operation") String operation,
                             Model model) {
         double result = calculatorService.calculate(num1, num2, operation);
-        if (Double.isNaN(result)) {
-            model.addAttribute("error", "Lỗi trong phép toán.");
-        } else {
-            model.addAttribute("result", result);
-        }
+        model.addAttribute("result", result);
         return "calculator";
     }
 
@@ -44,12 +40,5 @@ public class CalculatorController {
         model.addAttribute("error", ex.getMessage());
         return "calculator";
     }
-
-    @ExceptionHandler(Exception.class)
-    public String handleException(Exception ex, Model model) {
-        model.addAttribute("error", ex.getMessage());
-        return "calculator";
-    }
-
 
 }

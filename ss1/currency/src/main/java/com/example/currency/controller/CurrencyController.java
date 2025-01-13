@@ -40,10 +40,5 @@ public class CurrencyController {
         return "currency";
     }
 
-    @ExceptionHandler(Exception.class)
-    public String handleException(Exception ex, Model model) {
-        model.addAttribute("error", ex.getMessage());
-        return "currency";
-    }
 
 }

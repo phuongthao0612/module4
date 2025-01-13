@@ -1,9 +1,12 @@
-package com.example.calculator.service;
+package com.example.calculator.service.impl;
 
+import com.example.calculator.service.IService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CalculatorService {
+public class CalculatorService implements IService {
+
+    @Override
     public double calculate(double num1, double num2, String operation) throws ArithmeticException, IllegalArgumentException {
         switch (operation) {
             case "add":
