@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:insert="~{layout/layout::library}"></th:block>
+</head>
+<body>
+<form th:action="@{/products/update/{id}(id=${product.id})}" method="post" th:object="${product}">
+    <h2>Cập Nhật Thông Tin Sản Phẩm</h2>
+    <input type="hidden" th:field="*{id}" />
+    <div class="form-group">
+        Tên Sản Phẩm
+        <input type="text" class="form-control" th:field="*{name}" required>
+    </div>
+
+    <div class="form-group">
+        Giá Sản Phẩm
+        <input type="number" class="form-control" th:field="*{price}" required>
+    </div>
+
+    <div class="form-group">
+        Mô Tả Sản Phẩm
+        <input type="text" class="form-control" th:field="*{description}" required>
+    </div>
+
+    <div class="form-group">
+        Nhà Sản Xuất
+        <input type="text" class="form-control" th:field="*{manufacturer}" required>
+    </div>
+
+    <div>
+        <button type="submit">Cập Nhật</button>
+        <a href="/products">Quay lại danh sách sản phẩm</a>
+    </div>
+</form>
+
+</body>
+</html>
