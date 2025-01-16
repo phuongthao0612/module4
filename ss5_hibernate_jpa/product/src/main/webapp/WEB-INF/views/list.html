@@ -32,11 +32,9 @@
             <td th:text="${product.description}"></td>
             <td th:text="${product.manufacturer}"></td>
             <td>
-                <a th:href="@{/products/update/{id}(id=${product.id})}">Chỉnh sửa</a>
-
-                <a th:href="@{/products/delete/{id}(id=${product.id})}">Xóa</a>
-
-                <a th:href="@{/products/detail/{id}(id=${product.id})}">Xem chi tiết</a>
+                <a th:href="@{/products/{id}/update(id=${product.id})}">Chỉnh sửa</a>
+                <a th:href="@{/products/{id}/delete(id=${product.id})}">Xóa</a>
+                <a th:href="@{/products/{id}/detail(id=${product.id})}">Xem chi tiết</a>
             </td>
         </tr>
     </table>

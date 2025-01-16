@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Danh Sách Sản Phẩm</title>
-    <th:block th:insert="~{layout/layout::library}" ></th:block>
+    <th:block th:insert="~{layout/layout::library}"></th:block>
 
 </head>
 <body>
@@ -14,6 +14,8 @@
         <button type="submit">Tìm kiếm</button>
     </form>
     <a href="/products/create">Thêm Mới</a>
+    <p th:if="${message}" class="text-danger" th:text="${message}"></p>
+
     <table class="table table-hover">
         <tr>
             <th>ID</th>
@@ -30,9 +32,9 @@
             <td th:text="${product.description}"></td>
             <td th:text="${product.manufacturer}"></td>
             <td>
-                <a th:href="@{/products/update/{id}(id=${product.id})}">Chỉnh sửa</a>
-                <a th:href="@{/products/delete/{id}(id=${product.id})}">Xóa</a>
-                <a th:href="@{/products/detail/{id}(id=${product.id})}">Xem chi tiết</a>
+                <a th:href="@{/products/{id}/update(id=${product.id})}">Chỉnh sửa</a>
+                <a th:href="@{/products/{id}/delete(id=${product.id})}">Xóa</a>
+                <a th:href="@{/products/{id}/detail(id=${product.id})}">Xem chi tiết</a>
             </td>
         </tr>
     </table>
