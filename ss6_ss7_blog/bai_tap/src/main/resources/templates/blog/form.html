@@ -13,6 +13,13 @@
     <label for="content">Nội dung:</label>
     <textarea id="content" th:field="*{content}" required></textarea>
     <br>
+    <label for="category">Danh mục:</label>
+    <select id="category" th:field="*{category.id}" required>
+        <option th:each="category : ${categories}"
+                th:value="${category.id}"
+                th:text="${category.name}"></option>
+    </select>
+    <br>
     <button type="submit">Tạo bài blog</button>
 </form>
 <br>

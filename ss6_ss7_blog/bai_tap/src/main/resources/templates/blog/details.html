@@ -11,6 +11,7 @@
     <p><strong>Ngày tạo:</strong> <span th:text="${blog.createdAt}"></span></p>
     <p><strong>Nội dung:</strong></p>
     <p th:text="${blog.content}"></p>
+    <p><strong>Danh mục:</strong> <span th:text="${blog.category.name}"></span></p>
 </div>
 <br>
 <a href="/blogs">Quay lại danh sách blog</a>

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Entity
+@Entity (name = "blogs")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Blog {
@@ -24,5 +24,8 @@ public class Blog {
     private String content;
     @Column(name = "created_at", columnDefinition = "DATETIME")
     private LocalDateTime createdAt = LocalDateTime.now();
+    @ManyToOne
+    @JoinColumn (name = "category_id", referencedColumnName = "id")
+    private Category category;
 
 }

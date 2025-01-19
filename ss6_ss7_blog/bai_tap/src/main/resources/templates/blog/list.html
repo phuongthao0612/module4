@@ -9,12 +9,17 @@
 <div th:if="${message}" style="color: green; font-weight: bold;">
     <p th:text="${message}"></p>
 </div>
+<form action="/blogs" method="get">
+    <input type="text" name="title" th:value="${title}" placeholder="Tìm kiếm theo tiêu đề"/>
+    <button type="submit">Tìm kiếm</button>
+</form>
 <a href="/blogs/create">Tạo bài blog mới</a>
 <table border="1">
     <thead>
     <tr>
         <th>Tiêu đề</th>
         <th>Ngày tạo</th>
+        <th>Danh mục</th>
         <th>Chức Năng</th>
     </tr>
     </thead>
@@ -22,6 +27,7 @@
     <tr th:each="blog : ${blogs}">
         <td th:text="${blog.title}"></td>
         <td th:text="${blog.createdAt}"></td>
+        <td th:text="${blog.category.name}"></td>
         <td>
             <a th:href="@{/blogs/{id}/update(id=${blog.id})}">Sửa</a>
             <a th:href="@{/blogs/{id}/delete(id=${blog.id})}">Xóa</a>
@@ -30,6 +36,11 @@
     </tr>
     </tbody>
 </table>
+<div>
+    <span th:each="i : ${#numbers.sequence(0, blogs.totalPages - 1)}">
+        <a th:href="@{/blogs?page={page}(page=${i})}" th:text="${i + 1}"></a>
+    </span>
+</div>
 
 </body>
 </html>
