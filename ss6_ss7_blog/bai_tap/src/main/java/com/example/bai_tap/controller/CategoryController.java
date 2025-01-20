@@ -1,6 +1,5 @@
 package com.example.bai_tap.controller;
 
-import com.example.bai_tap.exception.ResourceNotFoundException;
 import com.example.bai_tap.model.Category;
 import com.example.bai_tap.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +43,6 @@ public class CategoryController {
     @GetMapping("/{id}/update")
     public String showFormUpdate(@PathVariable("id") int id, Model model) {
         Category category = categoryService.getById(id);
-        if (category == null) {
-            throw new ResourceNotFoundException("Category with ID " + id + " not found.");
-        }
         model.addAttribute("category", category);
         return "category/update";
     }
@@ -75,9 +71,6 @@ public class CategoryController {
     @GetMapping("/{id}")
     public String showCategoryDetails(@PathVariable("id") int id, Model model) {
         Category category = categoryService.getById(id);
-        if (category == null) {
-            throw new ResourceNotFoundException("Category with ID " + id + " not found.");
-        }
         model.addAttribute("category", category);
         return "category/details";
     }

@@ -1,6 +1,5 @@
 package com.example.bai_tap.controller;
 
-import com.example.bai_tap.exception.ResourceNotFoundException;
 import com.example.bai_tap.model.Blog;
 import com.example.bai_tap.service.IBlogService;
 import com.example.bai_tap.service.ICategoryService;
@@ -58,9 +57,6 @@ public class BlogController {
     @GetMapping("/{id}/update")
     public String showFormUpdate(@PathVariable("id") int id, Model model) {
         Blog blog = blogService.getById(id);
-        if (blog == null) {
-            throw new ResourceNotFoundException("Blog with ID " + id + " not found.");
-        }
         model.addAttribute("blog", blog);
         model.addAttribute("categories", categoryService.getAll());
         return "blog/update";
@@ -90,9 +86,6 @@ public class BlogController {
     @GetMapping("/{id}")
     public String showBlogDetails(@PathVariable("id") int id, Model model) {
         Blog blog = blogService.getById(id);
-        if (blog == null) {
-            throw new ResourceNotFoundException("Blog with ID " + id + " not found.");
-        }
         model.addAttribute("blog", blog);
         return "blog/details";
     }

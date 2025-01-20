@@ -1,5 +1,6 @@
 package com.example.bai_tap.service.impl;
 
+import com.example.bai_tap.exception.ResourceNotFoundException;
 import com.example.bai_tap.model.Blog;
 import com.example.bai_tap.repository.IBlogRepository;
 import com.example.bai_tap.service.IBlogService;
@@ -38,7 +39,8 @@ public class BlogService implements IBlogService {
 
     @Override
     public Blog getById(int id) {
-        return blogRepository.findById(id).get();
+        return blogRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Blog with ID " + id + " not found."));
     }
 
     @Override

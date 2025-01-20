@@ -1,5 +1,6 @@
 package com.example.bai_tap.service.impl;
 
+import com.example.bai_tap.exception.ResourceNotFoundException;
 import com.example.bai_tap.model.Category;
 import com.example.bai_tap.repository.ICategoryRepository;
 import com.example.bai_tap.service.ICategoryService;
@@ -40,6 +41,7 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public Category getById(int id) {
-        return categoryRepository.findById(id).get();
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Category with ID " + id + " not found."));
     }
 }
