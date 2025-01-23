@@ -59,6 +59,7 @@ public class ProductController {
     public String viewProductDetail(@PathVariable int id, Model model) {
         Optional<Product> productOptional = productService.findById(id);
         if (!productOptional.isPresent()) {
+<<<<<<< HEAD
             return "error";
         }
         model.addAttribute("product", productOptional.get());
@@ -77,6 +78,26 @@ public class ProductController {
     }
 
     @PostMapping("/product/{id}/add-shop")
+=======
+            return "error"; 
+        }
+        model.addAttribute("product", productOptional.get());
+        return "detail"; 
+    }
+    
+    @PostMapping("/product/{id}/add_cart")
+    public String addToCartAndShow(@PathVariable("id") int id, @ModelAttribute Cart cart) {
+        Optional<Product> productOptional = productService.findById(id);
+        if (!productOptional.isPresent()) {
+            return "/error"; 
+        }
+        Product product = productOptional.get();
+        cartService.addProductToCart(cart, product); 
+        return "redirect:/cart";
+    }
+
+    @PostMapping("/product/{id}/add_shop")
+>>>>>>> ca81c6b84077d5dde03912d6b24b850b9b51ec3e
     public String addToCartAndBackToShop(@PathVariable Integer id, @ModelAttribute Cart cart) {
         Optional<Product> productOptional = productService.findById(id);
         if (!productOptional.isPresent()) {
