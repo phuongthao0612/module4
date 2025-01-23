@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shop</title>
+</head>
+<body>
+<h1>Welcome to the Shop</h1>
+<a href="/shop/create"
+   style="margin-bottom: 20px; display: inline-block; background-color: green; color: white; padding: 10px 20px; text-decoration: none;">Add
+    New Product</a>
+
+<div th:each="product : ${products}">
+    <div>
+        <h3 th:text="${product.name}"></h3>
+        <p th:text="${product.description}"></p>
+        <p>Price: $<span th:text="${product.price}"></span></p>
+
+        <form th:action="@{/shop/product/{id}/add_cart(id=${product.id})}" method="post">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+</div>
+
+<a href="/cart">Go to Cart</a>
+</body>
+</html>
