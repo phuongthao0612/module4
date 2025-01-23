@@ -23,6 +23,11 @@ public class CartController {
     @Autowired
     private IProductService productService;
 
+    @ModelAttribute
+    public Cart getCart() {
+        return new Cart();
+    }
+
     @GetMapping("")
     public String viewCart(@ModelAttribute("cart") Cart cart, Model model) {
         model.addAttribute("cart", cart);
