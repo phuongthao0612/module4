@@ -6,7 +6,9 @@ import com.example.bai_tap.service.IBlogService;
 import com.example.bai_tap.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,9 +44,14 @@ public class BlogRestController {
         return new ResponseEntity<>(blogs, HttpStatus.OK);
     }
 
-    @GetMapping("/category/{categoryId}")
-    public ResponseEntity<Page<Blog>> getBlogsByCategory(@PathVariable("categoryId") int categoryId, Pageable pageable) {
-        Page<Blog> blogs = blogService.getBlogsByCategory(categoryId, pageable);
+    @GetMapping("/search-category")
+    public ResponseEntity<Page<Blog>> searchByCategory(
+            @RequestParam(value = "categoryName", defaultValue = "") String categoryName,
+            Pageable pageable) {
+        if (categoryName == null || categoryName.isEmpty()) {
+            return new ResponseEntity<>(Page.empty(), HttpStatus.BAD_REQUEST);
+        }
+        Page<Blog> blogs = blogService.findAllByCategoryName(categoryName, pageable);
         if (blogs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -59,4 +66,6 @@ public class BlogRestController {
         }
         return new ResponseEntity<>(blog, HttpStatus.OK);
     }
+
+
 }

@@ -10,4 +10,6 @@ public interface IBlogService extends IService<Blog> {
     Page<Blog> getAll(Pageable pageable);
     Page<Blog> searchByTitle(String title, Pageable pageable);
     Page<Blog> getBlogsByCategory(int categoryId, Pageable pageable);
+
+    Page<Blog> findAllByCategoryName(String categoryName, Pageable pageable);
 }
